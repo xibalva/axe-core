@@ -93,7 +93,7 @@ describe('plugins', function() {
 		afterEach(function() {
 			fixture.innerHTML = '';
 			axe._audit = null;
-			axe.plugins = {};
+			axe._thisWillBeDeletedDoNotUse.base.cleanupPlugins();
 		});
 		beforeEach(function() {
 			axe._load({

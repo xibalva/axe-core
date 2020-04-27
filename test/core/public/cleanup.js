@@ -20,7 +20,7 @@ describe('cleanup', function() {
 
 	afterEach(function() {
 		fixture.innerHTML = '';
-		axe.plugins = {};
+		axe._thisWillBeDeletedDoNotUse.base.cleanupPlugins();
 	});
 
 	beforeEach(function() {

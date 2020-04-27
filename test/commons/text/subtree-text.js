@@ -1,6 +1,11 @@
 describe('text.subtreeText', function() {
 	var fixtureSetup = axe.testUtils.fixtureSetup;
 	var subtreeText = axe.commons.text.subtreeText;
+	var fixture = document.querySelector('#fixture');
+
+	beforeEach(function() {
+		fixture.innerHTML = '';
+	})
 
 	it('concatinated the accessible name for child elements', function() {
 		fixtureSetup('<span>foo</span> <span>bar</span> <span>baz</span>');
@@ -45,6 +50,7 @@ describe('text.subtreeText', function() {
 		});
 
 		it('sets context.processed when it is undefined', function() {
+			fixtureSetup('<h1>foo</h1>');
 			var h1 = axe.utils.querySelectorAll(axe._tree[0], 'h1')[0];
 			var text = h1.children[0];
 			var emptyContext = {};
@@ -53,6 +59,7 @@ describe('text.subtreeText', function() {
 		});
 
 		it('returns `` when the element is in the `processed` array', function() {
+			fixtureSetup('<h1>foo</h1>');
 			var h1 = axe.utils.querySelectorAll(axe._tree[0], 'h1')[0];
 			var context = {
 				processed: [h1]

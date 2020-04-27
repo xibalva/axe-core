@@ -51,7 +51,7 @@ describe('runRules', function() {
 
 	var isNotCalled;
 	beforeEach(function() {
-		memoizedFns = axe._memoizedFns.slice();
+		// memoizedFns = axe._memoizedFns.slice();
 		isNotCalled = function(err) {
 			throw err || new Error('Reject should not be called');
 		};
@@ -61,7 +61,7 @@ describe('runRules', function() {
 		fixture.innerHTML = '';
 		axe._audit = null;
 		axe._tree = undefined;
-		axe._memoizedFns = memoizedFns;
+		// axe._memoizedFns = memoizedFns;
 	});
 
 	it('should work', function(done) {

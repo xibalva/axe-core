@@ -1,4 +1,4 @@
-describe('axe.utils.publishMetaData', function() {
+describe('utils.publishMetaData', function() {
 	'use strict';
 
 	afterEach(function() {

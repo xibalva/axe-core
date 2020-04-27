@@ -1,4 +1,4 @@
-describe('axe.utils.select', function() {
+describe('utils.select', function() {
 	'use strict';
 
 	function $id(id) {

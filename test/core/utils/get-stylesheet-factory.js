@@ -1,4 +1,4 @@
-describe('axe.utils.getStyleSheetFactory', function() {
+describe('utils.getStyleSheetFactory', function() {
 	'use strict';
 
 	var dynamicDoc = document.implementation.createHTMLDocument(

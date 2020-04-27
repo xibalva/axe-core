@@ -1,5 +1,5 @@
 /*global axe*/
-describe('axe.utils.areStylesSet', function() {
+describe('utils.areStylesSet', function() {
 	'use strict';
 
 	var fixture = document.getElementById('fixture');

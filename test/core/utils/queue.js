@@ -1,4 +1,4 @@
-describe('axe.utils.queue', function() {
+describe('utils.queue', function() {
 	'use strict';
 
 	it('should be a function', function() {

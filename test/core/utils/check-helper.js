@@ -1,4 +1,4 @@
-describe('axe.utils.checkHelper', function() {
+describe('utils.checkHelper', function() {
 	'use strict';
 
 	var DqElement = axe.utils.DqElement;

@@ -1,4 +1,4 @@
-describe('axe.utils.parseSameOriginStylesheet', function() {
+describe('utils.parseSameOriginStylesheet', function() {
 	'use strict';
 
 	var stylesForPage;

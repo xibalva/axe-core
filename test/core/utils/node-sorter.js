@@ -1,4 +1,4 @@
-describe('axe.utils.nodeSorter', function() {
+describe('utils.nodeSorter', function() {
 	'use strict';
 
 	function $id(id) {

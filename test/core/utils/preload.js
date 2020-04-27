@@ -1,9 +1,9 @@
-describe('axe.utils.preload', function() {
+describe('utils.preload', function() {
 	'use strict';
 
 	var fixture = document.getElementById('fixture');
 
-	before(function() {
+	beforeEach(function() {
 		axe._tree = axe.utils.getFlattenedTree(fixture);
 	});
 
@@ -40,7 +40,7 @@ describe('axe.utils.preload', function() {
 		});
 	});
 
-	describe('axe.utils.shouldPreload', function() {
+	describe('utils.shouldPreload', function() {
 		it('should return true if preload configuration is valid', function() {
 			var actual = axe.utils.shouldPreload({
 				preload: {
@@ -80,7 +80,7 @@ describe('axe.utils.preload', function() {
 		});
 	});
 
-	describe('axe.utils.getPreloadConfig', function() {
+	describe('utils.getPreloadConfig', function() {
 		it('should return default assets if preload configuration is not set', function() {
 			var actual = axe.utils.getPreloadConfig({}).assets;
 			var expected = ['cssom', 'media'];

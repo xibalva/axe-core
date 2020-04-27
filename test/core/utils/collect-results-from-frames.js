@@ -1,4 +1,4 @@
-describe('axe.utils.collectResultsFromFrames', function() {
+describe('utils.collectResultsFromFrames', function() {
 	'use strict';
 
 	var Context = axe._thisWillBeDeletedDoNotUse.base.Context;

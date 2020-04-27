@@ -1,4 +1,4 @@
-describe('axe.utils.processMessage', function() {
+describe('utils.processMessage', function() {
 	'use strict';
 
 	var original = axe._audit;

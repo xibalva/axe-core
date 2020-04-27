@@ -1,4 +1,4 @@
-describe('axe.utils.extend', function() {
+describe('utils.extend', function() {
 	'use strict';
 
 	it('should merge properties', function() {

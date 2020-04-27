@@ -1,4 +1,4 @@
-describe('axe.utils.getCheckOption', function() {
+describe('utils.getCheckOption', function() {
 	'use strict';
 
 	it('should prefer options from rules', function() {

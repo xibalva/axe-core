@@ -1,4 +1,4 @@
-describe('axe.utils.getScrollState', function() {
+describe('utils.getScrollState', function() {
 	'use strict';
 	var mockWin;
 	var getScrollState = axe.utils.getScrollState;
@@ -138,7 +138,7 @@ describe('axe.utils.getScrollState', function() {
 	});
 });
 
-describe('axe.utils.setScrollState', function() {
+describe('utils.setScrollState', function() {
 	'use strict';
 	var setScrollState = axe.utils.setScrollState;
 

@@ -1,4 +1,4 @@
-describe('DqElement', function() {
+describe('utils.DqElement', function() {
 	'use strict';
 
 	var DqElement = axe.utils.DqElement;

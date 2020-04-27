@@ -1,4 +1,4 @@
-describe('aggregate', function() {
+describe('utils.aggregate', function() {
 	'use strict';
 
 	var map = ['youngling', 'padawan', 'knight', 'master', 'grand master'];

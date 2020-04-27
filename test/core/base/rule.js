@@ -40,6 +40,7 @@ describe('Rule', function() {
 				assert.lengthOf(nodes, 1);
 				assert.equal(nodes[0].actualNode, node);
 
+				axe._cache.clear();
 				node.id = 'bananas';
 				nodes = rule.gather({
 					include: [axe.utils.getFlattenedTree(fixture)[0]],

@@ -1,4 +1,4 @@
-describe('axe.utils.contains', function() {
+describe('utils.contains', function() {
 	'use strict';
 
 	var fixture = document.getElementById('fixture');

@@ -38,7 +38,7 @@ function makeNonuniqueLongAttributes(fixture) {
 	return node;
 }
 
-describe('axe.utils.getSelector', function() {
+describe('utils.getSelector', function() {
 	'use strict';
 
 	var fixture = document.getElementById('fixture');

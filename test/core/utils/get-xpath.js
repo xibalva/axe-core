@@ -1,4 +1,4 @@
-describe('axe.utils.getXpath', function() {
+describe('utils.getXpath', function() {
 	'use strict';
 
 	var fixture = document.getElementById('fixture');

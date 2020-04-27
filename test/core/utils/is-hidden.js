@@ -15,7 +15,7 @@ function makeShadowTreeHidden(node) {
 	div.appendChild(createContentHidden());
 }
 
-describe('axe.utils.isHidden', function() {
+describe('utils.isHidden', function() {
 	'use strict';
 
 	var fixture = document.getElementById('fixture');

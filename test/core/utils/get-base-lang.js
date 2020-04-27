@@ -1,4 +1,4 @@
-describe('axe.utils.getBaseLang', function() {
+describe('utils.getBaseLang', function() {
 	'use strict';
 
 	it('returns base lang as peanut for argument peanut-BUTTER', function() {

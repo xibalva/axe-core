@@ -89,8 +89,10 @@ testUtils.fixtureSetup = function(content) {
 			fixture.appendChild(node);
 		});
 	}
-	axe._tree = axe.utils.getFlattenedTree(fixture);
-	axe._selectorData = axe.utils.getSelectorData(axe._tree);
+
+	const vTree = axe.utils.getFlattenedTree(fixture);
+	axe._cache.set('vTree', vTree);
+	axe._cache.set('selectorData', axe.utils.getSelectorData(vTree));
 
 	return fixture;
 };
@@ -116,7 +118,7 @@ testUtils.checkSetup = function(content, options, target) {
 
 	var node;
 	if (typeof target === 'string') {
-		node = axe.utils.querySelectorAll(axe._tree[0], target)[0];
+		node = axe.utils.querySelectorAll(axe._cache.get('vTree')[0], target)[0];
 	} else if (target instanceof Node) {
 		node = axe.utils.getNodeFromTree(target);
 	} else {
@@ -179,7 +181,7 @@ testUtils.shadowCheckSetup = function(
 	}
 
 	// query the composed tree AFTER shadowDOM has been attached
-	axe._tree = axe.utils.getFlattenedTree(fixture);
+	axe._cache.set('vTree', axe.utils.getFlattenedTree(fixture));
 	var node = axe.utils.getNodeFromTree(targetCandidate);
 	return [node.actualNode, options, node];
 };
@@ -190,8 +192,9 @@ testUtils.shadowCheckSetup = function(
  * @returns vNode[]
  */
 testUtils.flatTreeSetup = function(content) {
-	axe._tree = axe.utils.getFlattenedTree(content);
-	return axe._tree;
+	const vTree = axe.utils.getFlattenedTree(content);
+	axe._cache.set('vTree', vTree);
+	return vTree;
 };
 
 /**
@@ -367,7 +370,7 @@ testUtils.assertStylesheet = function assertStylesheet(
  */
 testUtils.queryFixture = function queryFixture(html, query) {
 	testUtils.fixtureSetup(html);
-	return axe.utils.querySelectorAll(axe._tree, query || '#target')[0];
+	return axe.utils.querySelectorAll(axe._cache.get('vTree'), query || '#target')[0];
 };
 
 /**

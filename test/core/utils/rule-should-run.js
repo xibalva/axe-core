@@ -1,4 +1,4 @@
-describe('axe.utils.ruleShouldRun', function() {
+describe('utils.ruleShouldRun', function() {
 	'use strict';
 
 	it('should return false if rule.pageOnly and !context.page', function() {

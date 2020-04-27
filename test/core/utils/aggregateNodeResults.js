@@ -1,4 +1,4 @@
-describe('axe.utils.aggregateNodeResults', function() {
+describe('utils.aggregateNodeResults', function() {
 	'use strict';
 	var FAIL = 'failed';
 	var PASS = 'passed';

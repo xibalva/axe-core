@@ -1,4 +1,4 @@
-describe('axe.utils.respondable', function() {
+describe('utils.respondable', function() {
 	'use strict';
 
 	it('should be a function', function() {
@@ -377,14 +377,15 @@ describe('axe.utils.respondable', function() {
 	});
 
 	describe('subscribe', function() {
-		var origAxeUUID = axe._uuid;
+		var origAxeUUID = axe.utils.respondable._axeuuid;
 		var counter = 0;
 
 		before(function() {
 			// assign axe a new uuid every time it's requested to trick
 			// the code that each respondable was called from a different
 			// context
-			Object.defineProperty(axe, '_uuid', {
+			Object.defineProperty(axe.utils.respondable, '_axeuuid', {
+				configurable: true,
 				get: function() {
 					return ++counter;
 				}
@@ -392,7 +393,8 @@ describe('axe.utils.respondable', function() {
 		});
 
 		after(function() {
-			Object.defineProperty(axe, '_uuid', {
+			Object.defineProperty(axe.utils.respondable, '_axeuuid', {
+				configurable: true,
 				value: origAxeUUID
 			});
 		});

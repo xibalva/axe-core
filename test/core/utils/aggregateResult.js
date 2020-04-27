@@ -1,4 +1,4 @@
-describe('axe.utils.aggregateResult', function() {
+describe('utils.aggregateResult', function() {
 	'use strict';
 
 	var results,

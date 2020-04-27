@@ -1,7 +1,7 @@
 var fixture = document.getElementById('fixture');
 var shadowSupport = axe.testUtils.shadowSupport;
 
-describe('axe.utils.getFlattenedTree', function() {
+describe('utils.getFlattenedTree', function() {
 	'use strict';
 
 	function createStyle(box) {

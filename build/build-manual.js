@@ -37,7 +37,6 @@ module.exports = function build(grunt, options, commons, callback) {
 	callback({
 		rules: parseObject(options.rules),
 		checks: parseObject(options.checks),
-		misc: parseObject(options.misc),
-		commons: commons
+		misc: parseObject(options.misc)
 	});
 };

@@ -4,7 +4,7 @@
  * so tests for disabled and external stylesheets are done in `integration` tests
  * Refer Directory: `./test/full/preload-cssom/**.*`
  */
-describe('axe.utils.preloadCssom', function() {
+describe('utils.preloadCssom', function() {
 	'use strict';
 
 	var treeRoot;

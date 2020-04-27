@@ -6,7 +6,7 @@ function makeShadowTreeGRN(node) {
 	root.appendChild(div);
 }
 
-describe('axe.utils.getRootNode', function() {
+describe('utils.getRootNode', function() {
 	'use strict';
 
 	var fixture = document.getElementById('fixture');

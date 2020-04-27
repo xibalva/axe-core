@@ -1,4 +1,4 @@
-describe('axe.utils.finalizeRuleResult', function() {
+describe('utils.finalizeRuleResult', function() {
 	'use strict';
 
 	it('should be a function', function() {

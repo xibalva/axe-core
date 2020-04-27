@@ -1,4 +1,4 @@
-describe('axe.utils.aggregateChecks', function() {
+describe('utils.aggregateChecks', function() {
 	'use strict';
 	var FAIL = axe.constants.FAIL;
 	var PASS = axe.constants.PASS;

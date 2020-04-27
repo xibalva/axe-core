@@ -1,4 +1,4 @@
-describe('axe.utils.assert', function() {
+describe('utils.assert', function() {
 	it('does nothing when passed a truthy value', function() {
 		assert.doesNotThrow(function() {
 			axe.utils.assert(true);

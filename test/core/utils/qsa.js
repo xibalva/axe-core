@@ -45,7 +45,7 @@ function getTestDom() {
 	return tree;
 }
 
-describe('axe.utils.querySelectorAllFilter', function() {
+describe('utils.querySelectorAllFilter', function() {
 	'use strict';
 	var dom;
 	afterEach(function() {});
@@ -226,7 +226,7 @@ describe('axe.utils.querySelectorAllFilter', function() {
 		assert.equal(result.length, 1);
 	});
 });
-describe('axe.utils.querySelectorAll', function() {
+describe('utils.querySelectorAll', function() {
 	'use strict';
 	var dom;
 	afterEach(function() {});

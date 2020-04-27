@@ -1,4 +1,4 @@
-describe('axe.utils.preloadMedia', function() {
+describe('utils.preloadMedia', function() {
 	'use strict';
 
 	var fixture = document.getElementById('fixture');

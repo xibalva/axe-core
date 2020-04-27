@@ -1,4 +1,4 @@
-describe('axe.utils.getFriendlyUriEnd', function() {
+describe('utils.getFriendlyUriEnd', function() {
 	'use strict';
 	var getFriendlyUriEnd = axe.utils.getFriendlyUriEnd;
 

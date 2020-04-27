@@ -1,4 +1,4 @@
-describe('axe.utils.mergeResults', function() {
+describe('utils.mergeResults', function() {
 	'use strict';
 
 	it('should normalize empty results', function() {

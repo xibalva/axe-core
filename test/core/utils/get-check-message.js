@@ -1,4 +1,4 @@
-describe('axe.utils.getCheckMessage', function() {
+describe('utils.getCheckMessage', function() {
 	var getCheckMessage = axe.utils.getCheckMessage;
 
 	beforeEach(function() {

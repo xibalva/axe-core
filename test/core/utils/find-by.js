@@ -1,4 +1,4 @@
-describe('axe.utils.findBy', function() {
+describe('utils.findBy', function() {
 	'use strict';
 
 	it('should find the first matching object', function() {

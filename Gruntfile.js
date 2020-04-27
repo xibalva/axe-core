@@ -141,17 +141,17 @@ module.exports = function(grunt) {
 					};
 				})
 			},
-			commons: {
-				src: [
-					'lib/commons/intro.stub',
+			// commons: {
+			// 	src: [
+			// 		'lib/commons/intro.stub',
 
-					// output of webpack directories
-					'tmp/commons/index.js',
+			// 		// output of webpack directories
+			// 		'tmp/commons/index.js',
 
-					'lib/commons/outro.stub'
-				],
-				dest: 'tmp/commons.js'
-			}
+			// 		'lib/commons/outro.stub'
+			// 	],
+			// 	dest: 'tmp/commons.js'
+			// }
 		},
 		webpack: {
 			core: createWebpackConfig('lib/core/core.js', 'tmp/core', 'core.js'),
@@ -172,7 +172,7 @@ module.exports = function(grunt) {
 				},
 				files: langs.map(function(lang) {
 					return {
-						src: ['<%= concat.commons.dest %>'],
+						// src: ['tmp/core/core.js'],
 						dest: {
 							auto: 'tmp/rules' + lang + '.js',
 							descriptions: 'doc/rule-descriptions' + lang + '.md'
@@ -186,7 +186,7 @@ module.exports = function(grunt) {
 				options: {
 					lang: grunt.option('lang')
 				},
-				src: ['<%= concat.commons.dest %>'],
+				src: ['tmp/core/core.js'],
 				dest: './locales/' + (grunt.option('lang') || 'new-locale') + '.json'
 			}
 		},
@@ -368,7 +368,7 @@ module.exports = function(grunt) {
 		'clean',
 		'validate',
 		'webpack',
-		'concat:commons',
+		// 'concat:commons',
 		'configure',
 		'babel',
 		'concat:engine',

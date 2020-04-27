@@ -1,4 +1,4 @@
-describe('axe.utils.isXHTML', function() {
+describe('utils.isXHTML', function() {
 	'use strict';
 
 	it('should be a function', function() {

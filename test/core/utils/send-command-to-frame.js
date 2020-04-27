@@ -1,4 +1,4 @@
-describe('axe.utils.sendCommandToFrame', function() {
+describe('utils.sendCommandToFrame', function() {
 	'use strict';
 
 	var fixture = document.getElementById('fixture');

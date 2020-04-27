@@ -1,4 +1,4 @@
-describe('axe.utils.getAllChecks', function() {
+describe('utils.getAllChecks', function() {
 	'use strict';
 
 	it('should be a function', function() {

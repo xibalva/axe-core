@@ -1,4 +1,4 @@
-describe('axe.utils.toArray', function() {
+describe('utils.toArray', function() {
 	'use strict';
 	it('should call Array.prototype.slice', function() {
 		var orig = Array.prototype.slice,
@@ -25,7 +25,7 @@ describe('axe.utils.toArray', function() {
 	});
 });
 
-describe('axe.utils.uniqueArray', function() {
+describe('utils.uniqueArray', function() {
 	'use strict';
 
 	it('should filter duplicate values', function() {

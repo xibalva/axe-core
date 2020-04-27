@@ -1,4 +1,4 @@
-describe('axe.utils.getNodeAttributes', function() {
+describe('utils.getNodeAttributes', function() {
 	'use strict';
 
 	it('should return the list of attributes', function() {

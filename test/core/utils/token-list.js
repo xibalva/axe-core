@@ -1,4 +1,4 @@
-describe('axe.utils.tokenList', function() {
+describe('utils.tokenList', function() {
 	'use strict';
 
 	it('should split by space', function() {

@@ -1,4 +1,4 @@
-describe('axe.utils.getScroll', function() {
+describe('utils.getScroll', function() {
 	'use strict';
 
 	var fixture = document.getElementById('fixture');
