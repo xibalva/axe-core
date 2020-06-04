@@ -23,9 +23,6 @@ describe.only('axe.utils.parseCrossOriginStylesheet', function() {
 	it('returns cross-origin stylesheet', function(done) {
 
 		axe.imports.axios({
-			headers: {
-    		'Cache-Control': 'no-cache'
-    	},
 			method: 'get',
 			url: 'https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css'
 		}).then(function(data) {
