@@ -2881,7 +2881,7 @@ describe('text.accessibleTextVirtual', function() {
 
 		// Skip from 128 - 138 as those are name description cases
 
-		it('passes test 139', function() {
+		it('passes test 139', function(done) {
 			fixture.innerHTML =
 				'<style>' +
 				'  .hidden { display: none; }' +
@@ -2906,15 +2906,19 @@ describe('text.accessibleTextVirtual', function() {
 				'  </table>' +
 				'</div>';
 
-			axe.testUtils.flatTreeSetup(fixture);
-			var target = fixture.querySelector('#test');
-			// Chrome 72: "My name is Eli the weird. (QED) Where are my marbles?"
-			// Safari 12.0: "My name is Eli the weird. (QED) Where are my marbles?"
-			// Firefox 62: "Hello, My name is Eli the weird. (QED)"
-			assert.equal(
-				accessibleText(target),
-				'My name is Eli the weird. (QED) Where are my marbles?'
-			);
+			setTimeout(() => {
+
+				axe.testUtils.flatTreeSetup(fixture);
+				var target = fixture.querySelector('#test');
+				// Chrome 72: "My name is Eli the weird. (QED) Where are my marbles?"
+				// Safari 12.0: "My name is Eli the weird. (QED) Where are my marbles?"
+				// Firefox 62: "Hello, My name is Eli the weird. (QED)"
+				assert.equal(
+					accessibleText(target),
+					'My name is Eli the weird. (QED) Where are my marbles?'
+				);
+				done();
+			}, 1000);
 		});
 
 		it('passes test 140', function() {
