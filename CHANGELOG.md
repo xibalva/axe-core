@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/dequelabs/axe-core/compare/v4.0.1...v4.1.0) (2020-08-26)
+
+### Features
+
+- **label,select-name:** allow placeholder to pass label rule, add select-name rule ([#2448](https://github.com/dequelabs/axe-core/issues/2448)) ([1315f8e](https://github.com/dequelabs/axe-core/commit/1315f8e2fb3eb6851657be2039014e3d13127210))
+
+### Bug Fixes
+
+- **color-contrast:** dont error for floating element ([#2444](https://github.com/dequelabs/axe-core/issues/2444)) ([7b58c91](https://github.com/dequelabs/axe-core/commit/7b58c91836ee9e743bc09b4093841655bf3f588c))
+- **label:** pass when role none or presentation ([#2464](https://github.com/dequelabs/axe-core/issues/2464)) ([750a95b](https://github.com/dequelabs/axe-core/commit/750a95bc0b1e6b54312fe35f71d7f09ef2e99463)), closes [#2458](https://github.com/dequelabs/axe-core/issues/2458)
+- **svg-non-empty-title:** update fail message to indicate if the title element is empty or missing ([#2462](https://github.com/dequelabs/axe-core/issues/2462)) ([5b4a935](https://github.com/dequelabs/axe-core/commit/5b4a935f08b4e3bb50659ce638b7a2d6cba3aaf3)), closes [#2452](https://github.com/dequelabs/axe-core/issues/2452)
+
 ## [4.0.1](https://github.com/dequelabs/axe-core/compare/v4.0.0...v4.0.1) (2020-08-04)
 
 ### Bug Fixes
