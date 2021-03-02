@@ -287,6 +287,19 @@ describe('dom.isVisible', function() {
       assert.isTrue(actual);
     });
 
+    it('should detect overflow hidden on parent', function() {
+      fixture.innerHTML =
+        '<div style="width: 200px; height: 200px; overflow: hidden;">' +
+        '<div>' +
+        '<div style="width: 200px; height: 200px;">Hello</div>' +
+        '<div id="target" style="width: 200px; height: 200px; color: #eee;">World</div>' +
+        '</div>' +
+        '</div>';
+
+      var el = document.getElementById('target');
+      assert.isFalse(axe.commons.dom.isVisible(el));
+    });
+
     // IE11 either only supports clip paths defined by url() or not at all,
     // MDN and caniuse.com give different results...
     (isIE11 ? it.skip : it)(
@@ -549,6 +562,19 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div style="clip-path: circle(0%);">' +
         '<div id="target">Hi</div>' +
+        '</div>';
+
+      var el = document.getElementById('target');
+      assert.isTrue(axe.commons.dom.isVisible(el, true));
+    });
+
+    it('should not detect overflow hidden on parent', function() {
+      fixture.innerHTML =
+        '<div style="width: 200px; height: 200px; overflow: hidden;">' +
+        '<div>' +
+        '<div style="width: 200px; height: 200px;">Hello</div>' +
+        '<div id="target" style="width: 200px; height: 200px; color: #eee;">World</div>' +
+        '</div>' +
         '</div>';
 
       var el = document.getElementById('target');

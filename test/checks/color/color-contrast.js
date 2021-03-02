@@ -717,4 +717,16 @@ describe('color-contrast', function() {
     );
     assert.isFalse(contrastEvaluate.apply(checkContext, params));
   });
+
+  it('passes if element is outside a parent overflow', function() {
+    var params = checkSetup(
+      '<div style="width: 200px; height: 200px; overflow: hidden;">' +
+        '<div>' +
+        '<div style="width: 200px; height: 200px;">Hello</div>' +
+        '<div id="target" style="width: 200px; height: 200px; color: #eee;">World</div>' +
+        '</div>' +
+        '</div>'
+    );
+    assert.isTrue(contrastEvaluate.apply(checkContext, params));
+  });
 });
