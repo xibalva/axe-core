@@ -2,10 +2,12 @@ describe('is-on-screen', function() {
   'use strict';
 
   var fixture = document.getElementById('fixture');
+  var flatTreeSetup = axe.testUtils.flatTreeSetup;
 
   it('should return true for visible elements', function() {
     fixture.innerHTML = '<div id="target">elm</div>';
     var node = fixture.querySelector('#target');
+    flatTreeSetup(fixture);
 
     assert.isTrue(axe.testUtils.getCheckEvaluate('is-on-screen')(node));
   });
@@ -13,6 +15,7 @@ describe('is-on-screen', function() {
   it('should return true for aria-hidden=true elements', function() {
     fixture.innerHTML = '<div id="target" aria-hidden="true">elm</div>';
     var node = fixture.querySelector('#target');
+    flatTreeSetup(fixture);
 
     assert.isTrue(axe.testUtils.getCheckEvaluate('is-on-screen')(node));
   });
@@ -20,6 +23,7 @@ describe('is-on-screen', function() {
   it('should return false for display:none elements', function() {
     fixture.innerHTML = '<div id="target" style="display:none">elm</div>';
     var node = fixture.querySelector('#target');
+    flatTreeSetup(fixture);
 
     assert.isFalse(axe.testUtils.getCheckEvaluate('is-on-screen')(node));
   });
@@ -28,6 +32,7 @@ describe('is-on-screen', function() {
     fixture.innerHTML =
       '<div id="target" style="position:absolute; top:-10000px">elm</div>';
     var node = fixture.querySelector('#target');
+    flatTreeSetup(fixture);
 
     assert.isFalse(axe.testUtils.getCheckEvaluate('is-on-screen')(node));
   });

@@ -38,6 +38,9 @@ describe('text.isIconLigature', function() {
       document.fonts.add(materialFont);
       document.fonts.add(robotoFont);
       done();
+    })
+    .catch(function(err) {
+      done(err);
     });
   });
 

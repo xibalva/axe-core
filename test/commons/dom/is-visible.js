@@ -3,12 +3,9 @@ describe('dom.isVisible', function() {
 
   var fixture = document.getElementById('fixture');
   var queryFixture = axe.testUtils.queryFixture;
+  var flatTreeSetup = axe.testUtils.flatTreeSetup;
   var isIE11 = axe.testUtils.isIE11;
   var shadowSupported = axe.testUtils.shadowSupport.v1;
-  var fakeNode = {
-    nodeType: Node.ELEMENT_NODE,
-    nodeName: 'div'
-  };
 
   afterEach(function() {
     document.getElementById('fixture').innerHTML = '';
@@ -18,17 +15,22 @@ describe('dom.isVisible', function() {
   describe('default usage', function() {
     // Firefox returns `null` if accessed inside a hidden iframe
     it('should return false if computedStyle return null for whatever reason', function() {
+      fixture.innerHTML = '<div id="target">Hello!</div>';
+      var el = document.getElementById('target');
+      flatTreeSetup(fixture);
+
       var orig = window.getComputedStyle;
       window.getComputedStyle = function() {
         return null;
       };
-      assert.isFalse(axe.commons.dom.isVisible(fakeNode));
+      assert.isFalse(axe.commons.dom.isVisible(el));
       window.getComputedStyle = orig;
     });
 
     it('should return true on statically-positioned, visible elements', function() {
       fixture.innerHTML = '<div id="target">Hello!</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
 
       assert.isTrue(axe.commons.dom.isVisible(el));
     });
@@ -37,6 +39,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="position: absolute; left: 10px; right: 10px">hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
 
       assert.isTrue(axe.commons.dom.isVisible(el));
     });
@@ -45,6 +48,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="position:fixed; bottom: 0; left: 0;">StickySticky</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
 
       assert.isTrue(axe.commons.dom.isVisible(el));
     });
@@ -55,6 +59,7 @@ describe('dom.isVisible', function() {
         '<div id="target" style="position: absolute; top: -400px; left: -400px">Hi</div>' +
         '</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el));
     });
 
@@ -62,6 +67,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="position: absolute; left: -9999px">Hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isFalse(axe.commons.dom.isVisible(el));
     });
 
@@ -69,17 +75,19 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="position: absolute; top: -9999px">Hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isFalse(axe.commons.dom.isVisible(el));
     });
 
-    it('should return false on detached elements', function() {
+    it('should return true on detached elements', function() {
       var el = document.createElement('div');
-      el.innerHTML = 'I am not visible because I am detached!';
+      flatTreeSetup(el);
 
-      assert.isFalse(axe.commons.dom.isVisible(el));
+      assert.isTrue(axe.commons.dom.isVisible(el));
     });
 
     it('should return true on a document', function() {
+      flatTreeSetup(document);
       assert.isTrue(axe.commons.dom.isVisible(document));
     });
 
@@ -112,6 +120,7 @@ describe('dom.isVisible', function() {
         '<div id="target" style="top: -9999px; left: -9999px;' +
         'right: -9999px; bottom: -9999px;">Hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el));
     });
 
@@ -120,6 +129,7 @@ describe('dom.isVisible', function() {
         '<div id="target" aria-hidden="true">Hidden from screen readers</div>';
 
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el));
     });
 
@@ -130,6 +140,7 @@ describe('dom.isVisible', function() {
         '</div>';
 
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el));
     });
 
@@ -140,6 +151,7 @@ describe('dom.isVisible', function() {
         '</div>';
 
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el));
     });
 
@@ -155,6 +167,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML = '<div id="target" style="' + clip + '">Hi</div>';
 
       el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isFalse(axe.commons.dom.isVisible(el));
     });
 
@@ -171,6 +184,7 @@ describe('dom.isVisible', function() {
         '<div style="' + clip + '">' + '<div id="target">Hi</div>' + '</div>';
 
       el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isFalse(axe.commons.dom.isVisible(el));
     });
 
@@ -186,12 +200,14 @@ describe('dom.isVisible', function() {
       fixture.innerHTML = '<div id="target" style="' + clip + '">Hi</div>';
 
       el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isFalse(axe.commons.dom.isVisible(el));
     });
 
     it('should return false for display: none', function() {
       fixture.innerHTML = '<div id="target" style="display: none">Hello!</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
 
       assert.isFalse(axe.commons.dom.isVisible(el));
     });
@@ -199,6 +215,7 @@ describe('dom.isVisible', function() {
     it('should return false for opacity: 0', function() {
       fixture.innerHTML = '<div id="target" style="opacity: 0">Hello!</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
 
       assert.isFalse(axe.commons.dom.isVisible(el));
     });
@@ -206,6 +223,7 @@ describe('dom.isVisible', function() {
     it('should return false for opacity: 0', function() {
       fixture.innerHTML = '<div id="target" style="opacity: 0">Hello!</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
 
       assert.isFalse(axe.commons.dom.isVisible(el));
     });
@@ -214,6 +232,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div style="overflow: scroll; height: 0"><div id="target">Hello!</div></div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
 
       assert.isFalse(axe.commons.dom.isVisible(el));
     });
@@ -246,7 +265,7 @@ describe('dom.isVisible', function() {
           '<map name="infographic">' +
           '<area id="target" role="link" shape="circle" coords="130,136,60" aria-label="MDN"/>' +
           '</map>';
-        axe.testUtils.flatTreeSetup(fixture);
+        flatTreeSetup(fixture);
 
         var target = shadow.querySelector('#target');
         var actual = axe.commons.dom.isVisible(target);
@@ -296,6 +315,7 @@ describe('dom.isVisible', function() {
           '<div id="target" style="clip-path: inset(50%);">Hi</div>';
 
         var el = document.getElementById('target');
+        flatTreeSetup(fixture);
         assert.isFalse(axe.commons.dom.isVisible(el));
       }
     );
@@ -309,6 +329,7 @@ describe('dom.isVisible', function() {
           '</div>';
 
         var el = document.getElementById('target');
+        flatTreeSetup(fixture);
         assert.isFalse(axe.commons.dom.isVisible(el));
       }
     );
@@ -361,17 +382,22 @@ describe('dom.isVisible', function() {
   describe('screen readers', function() {
     // Firefox returns `null` if accessed inside a hidden iframe
     it('should return false if computedStyle return null for whatever reason', function() {
+      fixture.innerHTML = '<div id="target">Hello!</div>';
+      var el = document.getElementById('target');
+      flatTreeSetup(fixture);
+
       var orig = window.getComputedStyle;
       window.getComputedStyle = function() {
         return null;
       };
-      assert.isFalse(axe.commons.dom.isVisible(fakeNode, true));
+      assert.isFalse(axe.commons.dom.isVisible(fixture, true));
       window.getComputedStyle = orig;
     });
 
     it('should return true on staticly-positioned, visible elements', function() {
       fixture.innerHTML = '<div id="target">Hello!</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
 
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
@@ -380,6 +406,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="position: absolute; left: 10px; right: 10px">hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
 
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
@@ -388,6 +415,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="position:fixed; bottom: 0; left: 0;">StickySticky</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
 
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
@@ -398,6 +426,7 @@ describe('dom.isVisible', function() {
         '<div id="target" style="position: absolute; top: -400px; left: -400px">Hi</div>' +
         '</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -405,6 +434,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="position: absolute; left: -9999px">Hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -412,6 +442,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="position: absolute; top: -9999px">Hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -419,6 +450,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="position: absolute; right: -9999px">Hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -426,6 +458,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="position: absolute; bottom: -9999px">Hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -433,14 +466,15 @@ describe('dom.isVisible', function() {
       fixture.innerHTML =
         '<div id="target" style="text-indent: -9999px">Hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
-    it('should return false on detached elements', function() {
+    it('should return true on detached elements', function() {
       var el = document.createElement('div');
-      el.innerHTML = 'I am not visible because I am detached!';
+      flatTreeSetup(el);
 
-      assert.isFalse(axe.commons.dom.isVisible(el, true));
+      assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
     it('should return true on a document', function() {
@@ -452,6 +486,7 @@ describe('dom.isVisible', function() {
         '<div id="target" style="top: -9999px; left: -9999px;' +
         'right: -9999px; bottom: -9999px;">Hi</div>';
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -460,6 +495,7 @@ describe('dom.isVisible', function() {
         '<div id="target" aria-hidden="true">Hidden from screen readers</div>';
 
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isFalse(axe.commons.dom.isVisible(el, true));
     });
 
@@ -468,6 +504,7 @@ describe('dom.isVisible', function() {
         '<div aria-hidden="true"><div id="target">Hidden from screen readers</div></div>';
 
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isFalse(axe.commons.dom.isVisible(el, true));
     });
 
@@ -478,6 +515,7 @@ describe('dom.isVisible', function() {
         '</div>';
 
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -488,6 +526,7 @@ describe('dom.isVisible', function() {
         '</div>';
 
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -503,6 +542,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML = '<div id="target" style="' + clip + '">Hi</div>';
 
       el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -519,6 +559,7 @@ describe('dom.isVisible', function() {
         '<div style="' + clip + '">' + '<div id="target">Hi</div>' + '</div>';
 
       el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -534,6 +575,7 @@ describe('dom.isVisible', function() {
       fixture.innerHTML = '<div id="target" style="' + clip + '">Hi</div>';
 
       el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -542,6 +584,7 @@ describe('dom.isVisible', function() {
         '<div id="target" style="clip-path: inset(50%);">Hi</div>';
 
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
 
@@ -552,6 +595,7 @@ describe('dom.isVisible', function() {
         '</div>';
 
       var el = document.getElementById('target');
+      flatTreeSetup(fixture);
       assert.isTrue(axe.commons.dom.isVisible(el, true));
     });
   });

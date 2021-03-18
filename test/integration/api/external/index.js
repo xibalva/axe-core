@@ -32,6 +32,7 @@ describe('external API', function() {
 
   describe('axe.commons.dom.isVisible', function() {
     it('must be a function with the signature Element -> Boolean', function() {
+      axe._tree = axe.utils.getFlattenedTree(document.body);
       var el = randomNodeInTree(isElement);
       assert.isBoolean(axe.commons.dom.isVisible(el));
       assert.isBoolean(axe.commons.dom.isVisible(randomNodeInTree(isElement)));

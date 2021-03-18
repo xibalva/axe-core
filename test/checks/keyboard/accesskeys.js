@@ -2,7 +2,7 @@ describe('accesskeys', function() {
   'use strict';
 
   var fixture = document.getElementById('fixture');
-
+  var flatTreeSetup = axe.testUtils.flatTreeSetup;
   var checkContext = axe.testUtils.MockCheckContext();
 
   afterEach(function() {
@@ -12,8 +12,10 @@ describe('accesskeys', function() {
 
   it('should return true and record accesskey', function() {
     fixture.innerHTML = '<div id="target" accesskey="A"></div>';
+    flatTreeSetup(fixture);
     var node = fixture.querySelector('#target');
-    assert.isTrue(checks.accesskeys.evaluate.call(checkContext, node));
+    var vNode = axe.utils.getNodeFromTree(node);
+    assert.isTrue(checks.accesskeys.evaluate.call(checkContext, node, null, vNode));
 
     assert.equal(checkContext._data, node.getAttribute('accesskey'));
     assert.lengthOf(checkContext._relatedNodes, 1);
